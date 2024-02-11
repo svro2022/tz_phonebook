@@ -1,0 +1,26 @@
+[
+    {
+        "surname": "ivanov",
+        "name": "petr",
+        "patronymic": "ivanovich",
+        "organization": "ooo magazine",
+        "work phone": "89685556677",
+        "personal phone": "82624477"
+    },
+    {
+        "surname": "petrov",
+        "name": "petr",
+        "patronymic": "petrovich",
+        "organization": "ooo zamok",
+        "work phone": "5559990033",
+        "personal phone": "86667788"
+    },
+    {
+        "surname": "mironova",
+        "name": "masha",
+        "patronymic": "aleksandrovna",
+        "organization": "ooo elka",
+        "work phone": "89856677",
+        "personal phone": "89995566"
+    }
+]
