@@ -26,6 +26,7 @@ class Phonebook:
         end_index = start_index + page_size
         page_data = self.data[start_index:end_index]
         for entry in page_data:
+            print("------------------------")
             print(f"Фамилия: {entry['surname']}")
             print(f"Имя: {entry['name']}")
             print(f"Отчество: {entry['patronymic']}")
@@ -48,24 +49,51 @@ class Phonebook:
         print("Запись добавлена!")
 
     def edit_entry(self):
-        '''Метод редактирования данных.'''
+        '''Метод редактирования данных. Поиск данных ведется по имени и затем по индексу (если есть повторы).'''
+        name = input("Введите имя: ")
+        matching_entries = []
+        for i, entry in enumerate(self.data):
+            if entry['name'] == name:
+                matching_entries.append(i)
+
+        if not matching_entries:
+            print("Записей с таким именем не найдено!")
+            return
+
+        print(f"Найдено {len(matching_entries)} записей с именем '{name}':")
+        for i in matching_entries:
+            entry = self.data[i]
+            print("------------------------")
+            print(f"Индекс записи: {i}")
+            print(f"Фамилия: {entry['surname']}")
+            print(f"Имя: {entry['name']}")
+            print(f"Отчество: {entry['patronymic']}")
+            print(f"Организация: {entry['organization']}")
+            print(f"Рабочий телефон: {entry['work phone']}")
+            print(f"Личный телефон: {entry['personal phone']}")
+            print("------------------------")
+
         index = int(input("Введите индекс записи для редактирования: "))
-        if index < 0 or index >= len(self.data):
+        if index not in matching_entries:
             print("Неправильный индекс!")
             return
+
         entry = self.data[index]
+        print(f"\nРедактирование записи {index}:")
         print(f"Фамилия: {entry['surname']}")
         print(f"Имя: {entry['name']}")
         print(f"Отчество: {entry['patronymic']}")
         print(f"Организация: {entry['organization']}")
         print(f"Рабочий телефон: {entry['work phone']}")
         print(f"Личный телефон: {entry['personal phone']}")
-        field = input("Выберите поле для редактирования: (surname, name, patronymic, \n "
-                      "organization, work phone, personal phone)")
+
+        field = input("Введите поле для редактирования (surname, name, patronymic, \n "
+                      "organization, work phone, personal phone): ")
         if field not in entry:
             print("Неправильное поле!")
             return
-        value = input("Пишем новое значение: ")
+
+        value = input("Введите новое значение: ")
         entry[field] = value
         self.save_data()
         print("Запись отредактирована!")
@@ -82,6 +110,7 @@ class Phonebook:
         if results:
             print("Результаты поиска:")
             for entry in results:
+                print("------------------------")
                 print(f"Фамилия: {entry['surname']}")
                 print(f"Имя: {entry['name']}")
                 print(f"Отчество: {entry['patronymic']}")

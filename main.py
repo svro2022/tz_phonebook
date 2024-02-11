@@ -7,11 +7,13 @@ page_size = 5
 current_page = 1
 while True:
 
+    print("=====МЕНЮ=====")
     print("1. Вывод записей")
     print("2. Добавление записи")
     print("3. Редактирование записи")
     print("4. Поиск записей")
     print("5. Выход")
+    print("==============")
     choice = input("Введите номер действия: ")
     if choice == "1":
         phonebook.display_data(current_page, page_size)
